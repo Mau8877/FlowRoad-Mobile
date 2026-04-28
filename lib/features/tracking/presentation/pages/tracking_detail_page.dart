@@ -29,7 +29,7 @@ class TrackingDetailPage extends StatelessWidget {
     return switch (status) {
       'COMPLETED' => AppColors.frSuccess,
       'CANCELLED' => AppColors.frDanger,
-      'PENDING_ASSIGNMENT' => AppColors.frWarning,
+      'PENDING_ASSIGNMENT' => AppColors.frTaupe,
       _ => AppColors.frGold,
     };
   }
@@ -39,94 +39,114 @@ class TrackingDetailPage extends StatelessWidget {
     final statusColor = _statusColor(tracking.status);
 
     return Scaffold(
-      backgroundColor: AppColors.frGray,
-      appBar: AppBar(title: const Text('Detalle del trámite')),
+      backgroundColor: AppColors.frBlack,
+      appBar: AppBar(
+        title: const Text('Detalle del trámite'),
+        backgroundColor: AppColors.frBlack,
+      ),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(18),
           children: [
-            Card(
-              elevation: 0,
-              color: AppColors.frWhite,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      tracking.diagramName,
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w900,
-                        color: AppColors.frBlack,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    SelectableText(
-                      tracking.code,
-                      style: const TextStyle(
-                        color: AppColors.frMuted,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        color: statusColor.withValues(alpha: 0.12),
-                        borderRadius: BorderRadius.circular(999),
-                      ),
-                      child: Text(
-                        tracking.statusLabel,
-                        style: TextStyle(
-                          color: statusColor,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 18),
-                    _DetailRow(
-                      icon: Icons.play_circle_outline,
-                      label: 'Paso actual',
-                      value: tracking.currentStepName,
-                    ),
-                    const SizedBox(height: 10),
-                    _DetailRow(
-                      icon: Icons.apartment_outlined,
-                      label: 'Departamento actual',
-                      value: tracking.currentDepartmentName ?? 'No asignado',
-                    ),
-                    const SizedBox(height: 10),
-                    _DetailRow(
-                      icon: Icons.calendar_today_outlined,
-                      label: 'Inicio',
-                      value: _formatDate(tracking.startedAt),
-                    ),
-                    const SizedBox(height: 10),
-                    _DetailRow(
-                      icon: Icons.update,
-                      label: 'Última actualización',
-                      value: _formatDate(tracking.updatedAt),
-                    ),
-                  ],
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [AppColors.frBrown, AppColors.frBlack],
                 ),
+                borderRadius: BorderRadius.circular(26),
+                border: Border.all(
+                  color: AppColors.frGold.withValues(alpha: 0.22),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Trámite',
+                    style: TextStyle(
+                      color: AppColors.frGold,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    tracking.diagramName,
+                    style: const TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w900,
+                      color: AppColors.frCream,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SelectableText(
+                    tracking.code,
+                    style: const TextStyle(
+                      color: AppColors.frMuted,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: statusColor.withValues(alpha: 0.14),
+                      borderRadius: BorderRadius.circular(999),
+                      border: Border.all(
+                        color: statusColor.withValues(alpha: 0.35),
+                      ),
+                    ),
+                    child: Text(
+                      tracking.statusLabel,
+                      style: TextStyle(
+                        color: statusColor,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  _DetailRow(
+                    icon: Icons.play_circle_outline,
+                    label: 'Paso actual',
+                    value: tracking.currentStepName,
+                  ),
+                  const SizedBox(height: 12),
+                  _DetailRow(
+                    icon: Icons.apartment_outlined,
+                    label: 'Departamento actual',
+                    value: tracking.currentDepartmentName ?? 'No asignado',
+                  ),
+                  const SizedBox(height: 12),
+                  _DetailRow(
+                    icon: Icons.calendar_today_outlined,
+                    label: 'Inicio',
+                    value: _formatDate(tracking.startedAt),
+                  ),
+                  const SizedBox(height: 12),
+                  _DetailRow(
+                    icon: Icons.update,
+                    label: 'Última actualización',
+                    value: _formatDate(tracking.updatedAt),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 16),
             SubscribeButton(trackingCode: tracking.code),
-            const SizedBox(height: 18),
+            const SizedBox(height: 22),
             const Text(
               'Avance del proceso',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 21,
                 fontWeight: FontWeight.w900,
-                color: AppColors.frBlack,
+                color: AppColors.frGold,
               ),
             ),
             const SizedBox(height: 10),
@@ -154,7 +174,7 @@ class _DetailRow extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, color: AppColors.frBrown, size: 20),
+        Icon(icon, color: AppColors.frGold, size: 21),
         const SizedBox(width: 10),
         Expanded(
           child: Column(
@@ -172,8 +192,8 @@ class _DetailRow extends StatelessWidget {
               Text(
                 value,
                 style: const TextStyle(
-                  color: AppColors.frBlack,
-                  fontWeight: FontWeight.w700,
+                  color: AppColors.frCream,
+                  fontWeight: FontWeight.w800,
                 ),
               ),
             ],

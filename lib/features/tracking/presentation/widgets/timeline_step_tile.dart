@@ -17,10 +17,10 @@ class TimelineStepTile extends StatelessWidget {
 
   Color get _statusColor {
     return switch (step.status) {
-      'COMPLETED' => AppColors.frSuccess,
+      'COMPLETED' => AppColors.frGold,
       'CURRENT' => AppColors.frGold,
       'CANCELLED' => AppColors.frDanger,
-      _ => AppColors.frMuted,
+      _ => AppColors.frTaupe,
     };
   }
 
@@ -59,6 +59,7 @@ class TimelineStepTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final completedAtText = _formatDate(step.completedAt);
     final startedAtText = _formatDate(step.startedAt);
+    final isCurrent = step.status == 'CURRENT';
 
     return IntrinsicHeight(
       child: Row(
@@ -73,14 +74,14 @@ class TimelineStepTile extends StatelessWidget {
                     width: 2,
                     color: isFirst
                         ? Colors.transparent
-                        : _statusColor.withValues(alpha: 0.35),
+                        : AppColors.frTaupe.withValues(alpha: 0.35),
                   ),
                 ),
                 Container(
                   width: 34,
                   height: 34,
                   decoration: BoxDecoration(
-                    color: _statusColor.withValues(alpha: 0.14),
+                    color: _statusColor.withValues(alpha: 0.16),
                     shape: BoxShape.circle,
                     border: Border.all(color: _statusColor, width: 2),
                   ),
@@ -91,7 +92,7 @@ class TimelineStepTile extends StatelessWidget {
                     width: 2,
                     color: isLast
                         ? Colors.transparent
-                        : _statusColor.withValues(alpha: 0.35),
+                        : AppColors.frTaupe.withValues(alpha: 0.35),
                   ),
                 ),
               ],
@@ -103,14 +104,14 @@ class TimelineStepTile extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
-                  color: step.status == 'CURRENT'
-                      ? AppColors.frGold.withValues(alpha: 0.10)
-                      : AppColors.frGray,
+                  color: isCurrent
+                      ? AppColors.frGold.withValues(alpha: 0.12)
+                      : AppColors.frBlack.withValues(alpha: 0.56),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: step.status == 'CURRENT'
-                        ? AppColors.frGold.withValues(alpha: 0.4)
-                        : Colors.transparent,
+                    color: isCurrent
+                        ? AppColors.frGold.withValues(alpha: 0.45)
+                        : AppColors.frTaupe.withValues(alpha: 0.15),
                   ),
                 ),
                 child: Column(
@@ -119,28 +120,28 @@ class TimelineStepTile extends StatelessWidget {
                     Text(
                       step.label,
                       style: const TextStyle(
-                        color: AppColors.frBlack,
+                        color: AppColors.frCream,
                         fontWeight: FontWeight.w900,
                         fontSize: 15,
                       ),
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 7),
                     Wrap(
                       spacing: 8,
                       runSpacing: 8,
                       children: [
                         _Badge(text: _statusLabel, color: _statusColor),
-                        _Badge(text: step.type, color: AppColors.frBrown),
+                        _Badge(text: step.type, color: AppColors.frTaupe),
                       ],
                     ),
                     if (step.departmentName != null &&
                         step.departmentName!.isNotEmpty) ...[
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 9),
                       Text(
                         step.departmentName!,
                         style: const TextStyle(
                           color: AppColors.frMuted,
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w800,
                         ),
                       ),
                     ],
@@ -186,8 +187,9 @@ class _Badge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
+        color: color.withValues(alpha: 0.14),
         borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: color.withValues(alpha: 0.25)),
       ),
       child: Text(
         text,

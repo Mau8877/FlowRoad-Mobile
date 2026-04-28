@@ -20,15 +20,17 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 52,
+      height: 54,
       child: FilledButton.icon(
         onPressed: isLoading ? null : onPressed,
         style: FilledButton.styleFrom(
-          backgroundColor: AppColors.frBlack,
-          foregroundColor: AppColors.frWhite,
+          backgroundColor: AppColors.frGold,
+          disabledBackgroundColor: AppColors.frTaupe,
+          foregroundColor: AppColors.frBlack,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(16),
           ),
+          elevation: 0,
         ),
         icon: isLoading
             ? const SizedBox(
@@ -36,13 +38,16 @@ class PrimaryButton extends StatelessWidget {
                 height: 18,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: AppColors.frWhite,
+                  color: AppColors.frBlack,
                 ),
               )
             : Icon(icon ?? Icons.arrow_forward),
         label: Text(
           isLoading ? 'Procesando...' : text,
-          style: const TextStyle(fontWeight: FontWeight.w700),
+          style: const TextStyle(
+            fontWeight: FontWeight.w900,
+            letterSpacing: 0.2,
+          ),
         ),
       ),
     );

@@ -81,9 +81,10 @@ class _TrackingCodePageState extends State<TrackingCodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.frGray,
+      backgroundColor: AppColors.frBrown,
       appBar: AppBar(
-        title: const Text('Consultar trámite'),
+        title: const Text('FlowRoad'),
+        backgroundColor: AppColors.frBlack,
         actions: [
           IconButton(
             onPressed: _logout,
@@ -92,45 +93,57 @@ class _TrackingCodePageState extends State<TrackingCodePage> {
           ),
         ],
       ),
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(22),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 430),
-              child: Card(
-                elevation: 0,
-                color: AppColors.frWhite,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(22),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(22),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [AppColors.frBrown, AppColors.frBlack],
+          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(22),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 430),
+                child: Container(
+                  padding: const EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    color: AppColors.frBlack.withValues(alpha: 0.80),
+                    borderRadius: BorderRadius.circular(28),
+                    border: Border.all(
+                      color: AppColors.frGold.withValues(alpha: 0.24),
+                    ),
+                  ),
                   child: Form(
                     key: _formKey,
                     child: Column(
                       children: [
                         Container(
-                          width: 70,
-                          height: 70,
+                          width: 78,
+                          height: 78,
                           decoration: BoxDecoration(
                             color: AppColors.frGold.withValues(alpha: 0.16),
-                            borderRadius: BorderRadius.circular(22),
+                            borderRadius: BorderRadius.circular(24),
+                            border: Border.all(
+                              color: AppColors.frGold.withValues(alpha: 0.35),
+                            ),
                           ),
                           child: const Icon(
                             Icons.route_outlined,
-                            size: 38,
+                            size: 42,
                             color: AppColors.frGold,
                           ),
                         ),
                         const SizedBox(height: 18),
                         const Text(
-                          'Consulta el avance de tu trámite',
+                          'Consultar trámite',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 27,
                             fontWeight: FontWeight.w900,
-                            color: AppColors.frBlack,
+                            color: AppColors.frCream,
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -142,7 +155,7 @@ class _TrackingCodePageState extends State<TrackingCodePage> {
                             height: 1.4,
                           ),
                         ),
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 26),
                         AppTextField(
                           controller: _codeController,
                           label: 'Código de seguimiento',

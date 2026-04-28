@@ -82,22 +82,41 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.frGray,
-      appBar: AppBar(title: const Text('Registro')),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(22),
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 430),
-              child: Card(
-                elevation: 0,
-                color: AppColors.frWhite,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(22),
-                ),
-                child: Padding(
+      backgroundColor: AppColors.frBrown,
+      appBar: AppBar(
+        title: const Text('Registro'),
+        backgroundColor: AppColors.frBlack,
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [AppColors.frBrown, AppColors.frBlack],
+          ),
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(22),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 430),
+                child: Container(
                   padding: const EdgeInsets.all(22),
+                  decoration: BoxDecoration(
+                    color: AppColors.frBlack.withValues(alpha: 0.80),
+                    borderRadius: BorderRadius.circular(26),
+                    border: Border.all(
+                      color: AppColors.frGold.withValues(alpha: 0.25),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.frBlack.withValues(alpha: 0.35),
+                        blurRadius: 28,
+                        offset: const Offset(0, 18),
+                      ),
+                    ],
+                  ),
                   child: Form(
                     key: _formKey,
                     child: Column(
@@ -109,11 +128,22 @@ class _RegisterPageState extends State<RegisterPage> {
                             style: TextStyle(
                               fontSize: 26,
                               fontWeight: FontWeight.w900,
-                              color: AppColors.frBlack,
+                              color: AppColors.frCream,
                             ),
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 6),
+                        const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Regístrate para consultar tus trámites desde el móvil.',
+                            style: TextStyle(
+                              color: AppColors.frMuted,
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 22),
                         AppTextField(
                           controller: _nombreController,
                           label: 'Nombre',

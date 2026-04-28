@@ -72,84 +72,139 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.frGray,
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(22),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 430),
-              child: Card(
-                elevation: 0,
-                color: AppColors.frWhite,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(22),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(22),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'FlowRoad Mobile',
-                          style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.w900,
-                            color: AppColors.frBlack,
+      backgroundColor: AppColors.frBrown,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [AppColors.frBrown, AppColors.frBlack],
+          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(22),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 430),
+                child: Column(
+                  children: [
+                    Container(
+                      width: 82,
+                      height: 82,
+                      decoration: BoxDecoration(
+                        color: AppColors.frGold.withValues(alpha: 0.14),
+                        borderRadius: BorderRadius.circular(26),
+                        border: Border.all(
+                          color: AppColors.frGold.withValues(alpha: 0.45),
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.route_outlined,
+                        color: AppColors.frGold,
+                        size: 44,
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    const Text(
+                      'FLOWROAD',
+                      style: TextStyle(
+                        color: AppColors.frGold,
+                        fontSize: 38,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 2,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    const Text(
+                      'Seguimiento móvil de trámites',
+                      style: TextStyle(
+                        color: AppColors.frMuted,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 28),
+                    Container(
+                      padding: const EdgeInsets.all(22),
+                      decoration: BoxDecoration(
+                        color: AppColors.frBlack.withValues(alpha: 0.78),
+                        borderRadius: BorderRadius.circular(26),
+                        border: Border.all(
+                          color: AppColors.frGold.withValues(alpha: 0.24),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.frBlack.withValues(alpha: 0.35),
+                            blurRadius: 30,
+                            offset: const Offset(0, 18),
                           ),
-                        ),
-                        const SizedBox(height: 6),
-                        const Text(
-                          'Ingresa para consultar el avance de tu trámite.',
-                          style: TextStyle(
-                            color: AppColors.frMuted,
-                            height: 1.4,
-                          ),
-                        ),
-                        const SizedBox(height: 26),
-                        AppTextField(
-                          controller: _emailController,
-                          label: 'Correo',
-                          hintText: 'cliente@correo.com',
-                          keyboardType: TextInputType.emailAddress,
-                          textInputAction: TextInputAction.next,
-                          prefixIcon: Icons.mail_outline,
-                          validator: Validators.email,
-                        ),
-                        const SizedBox(height: 16),
-                        AppTextField(
-                          controller: _passwordController,
-                          label: 'Contraseña',
-                          obscureText: true,
-                          textInputAction: TextInputAction.done,
-                          prefixIcon: Icons.lock_outline,
-                          validator: Validators.password,
-                        ),
-                        const SizedBox(height: 24),
-                        PrimaryButton(
-                          text: 'Iniciar sesión',
-                          icon: Icons.login,
-                          isLoading: _isLoading,
-                          onPressed: _login,
-                        ),
-                        const SizedBox(height: 14),
-                        Center(
-                          child: TextButton(
-                            onPressed: _isLoading ? null : _goToRegister,
-                            child: const Text(
-                              'Crear cuenta de cliente',
+                        ],
+                      ),
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Iniciar sesión',
                               style: TextStyle(
-                                color: AppColors.frBrown,
-                                fontWeight: FontWeight.w700,
+                                fontSize: 26,
+                                fontWeight: FontWeight.w900,
+                                color: AppColors.frCream,
                               ),
                             ),
-                          ),
+                            const SizedBox(height: 6),
+                            const Text(
+                              'Accede para consultar el avance de tu trámite.',
+                              style: TextStyle(
+                                color: AppColors.frMuted,
+                                height: 1.4,
+                              ),
+                            ),
+                            const SizedBox(height: 24),
+                            AppTextField(
+                              controller: _emailController,
+                              label: 'Correo',
+                              hintText: 'cliente@correo.com',
+                              keyboardType: TextInputType.emailAddress,
+                              textInputAction: TextInputAction.next,
+                              prefixIcon: Icons.mail_outline,
+                              validator: Validators.email,
+                            ),
+                            const SizedBox(height: 16),
+                            AppTextField(
+                              controller: _passwordController,
+                              label: 'Contraseña',
+                              obscureText: true,
+                              textInputAction: TextInputAction.done,
+                              prefixIcon: Icons.lock_outline,
+                              validator: Validators.password,
+                            ),
+                            const SizedBox(height: 24),
+                            PrimaryButton(
+                              text: 'Iniciar sesión',
+                              icon: Icons.login,
+                              isLoading: _isLoading,
+                              onPressed: _login,
+                            ),
+                            const SizedBox(height: 14),
+                            Center(
+                              child: TextButton(
+                                onPressed: _isLoading ? null : _goToRegister,
+                                child: const Text(
+                                  'Crear cuenta de cliente',
+                                  style: TextStyle(
+                                    color: AppColors.frGold,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),

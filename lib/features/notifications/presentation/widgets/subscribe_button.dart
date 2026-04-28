@@ -36,7 +36,7 @@ class _SubscribeButtonState extends State<SubscribeButton> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Suscripción activada correctamente.'),
-          backgroundColor: AppColors.frSuccess,
+          backgroundColor: AppColors.frBrown,
         ),
       );
     } catch (error) {
@@ -62,27 +62,22 @@ class _SubscribeButtonState extends State<SubscribeButton> {
     if (_subscribed) {
       return Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(14),
+        padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-          color: AppColors.frSuccess.withValues(alpha: 0.12),
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: AppColors.frSuccess.withValues(alpha: 0.25),
-          ),
+          color: AppColors.frGold.withValues(alpha: 0.12),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppColors.frGold.withValues(alpha: 0.32)),
         ),
         child: const Row(
           children: [
-            Icon(
-              Icons.notifications_active_outlined,
-              color: AppColors.frSuccess,
-            ),
+            Icon(Icons.notifications_active_outlined, color: AppColors.frGold),
             SizedBox(width: 10),
             Expanded(
               child: Text(
                 'Ya estás suscrito a las notificaciones de este trámite.',
                 style: TextStyle(
-                  color: AppColors.frSuccess,
-                  fontWeight: FontWeight.w700,
+                  color: AppColors.frGold,
+                  fontWeight: FontWeight.w800,
                 ),
               ),
             ),

@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color frBlack = Color(0xFF111827);
-  static const Color frBrown = Color(0xFF6B4F3F);
-  static const Color frTaupe = Color(0xFFA68A64);
-  static const Color frGold = Color(0xFFD4A017);
-  static const Color frGray = Color(0xFFF3F4F6);
+  // Paleta FlowRoad oficial
+  static const Color frBlack = Color(0xFF020304);
+  static const Color frBrown = Color(0xFF541F14);
+  static const Color frTaupe = Color(0xFF938172);
+  static const Color frGold = Color(0xFFCC9E61);
+  static const Color frGray = Color(0xFF626266);
+
+  // Apoyos visuales
   static const Color frWhite = Color(0xFFFFFFFF);
-  static const Color frMuted = Color(0xFF6B7280);
-  static const Color frSuccess = Color(0xFF16A34A);
-  static const Color frWarning = Color(0xFFF59E0B);
-  static const Color frDanger = Color(0xFFDC2626);
+  static const Color frCream = Color(0xFFF7F1EA);
+  static const Color frCard = Color(0xFF0B0B0C);
+  static const Color frMuted = Color(0xFFB7AAA0);
+
+  static const Color frSuccess = Color(0xFFCC9E61);
+  static const Color frWarning = Color(0xFFCC9E61);
+  static const Color frDanger = Color(0xFFB91C1C);
 }

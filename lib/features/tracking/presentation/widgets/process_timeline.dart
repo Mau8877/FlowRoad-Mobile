@@ -12,24 +12,26 @@ class ProcessTimeline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (steps.isEmpty) {
-      return Card(
-        elevation: 0,
-        color: AppColors.frWhite,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-        child: const Padding(
-          padding: EdgeInsets.all(18),
-          child: Text(
-            'No hay pasos disponibles para este trámite.',
-            style: TextStyle(color: AppColors.frMuted),
-          ),
+      return Container(
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+          color: AppColors.frCard,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: AppColors.frGold.withValues(alpha: 0.18)),
+        ),
+        child: const Text(
+          'No hay pasos disponibles para este trámite.',
+          style: TextStyle(color: AppColors.frMuted),
         ),
       );
     }
 
-    return Card(
-      elevation: 0,
-      color: AppColors.frWhite,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.frCard,
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: AppColors.frGold.withValues(alpha: 0.16)),
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: Column(
