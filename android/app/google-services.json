@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "596427089485",
+    "project_id": "flowroad-8877",
+    "storage_bucket": "flowroad-8877.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596427089485:android:2c4d31dce4be8735109e04",
+        "android_client_info": {
+          "package_name": "com.example.flowroad_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUJr77nwVLbvOkQeGyKGY3OWHz9TrtqZk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
