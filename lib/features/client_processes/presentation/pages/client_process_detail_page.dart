@@ -211,8 +211,11 @@ class _ClientProcessDetailPageState extends State<ClientProcessDetailPage> {
   Future<PlatformFile?> _pickAndValidateFile(
     ClientDocumentRequirement requirement,
   ) async {
+    final allowedExtensions = _allowedPickerExtensions(requirement);
     final result = await FilePicker.platform.pickFiles(
       allowMultiple: false,
+      type: allowedExtensions.isEmpty ? FileType.any : FileType.custom,
+      allowedExtensions: allowedExtensions.isEmpty ? null : allowedExtensions,
       withData: kIsWeb,
     );
 
@@ -285,6 +288,34 @@ class _ClientProcessDetailPageState extends State<ClientProcessDetailPage> {
     }
 
     return null;
+  }
+
+  List<String> _allowedPickerExtensions(
+    ClientDocumentRequirement requirement,
+  ) {
+    final extensions = <String>{};
+
+    for (final allowedType in requirement.allowedFileTypes) {
+      final normalized = allowedType.toLowerCase().trim();
+
+      if (normalized.isEmpty) {
+        continue;
+      }
+
+      if (normalized.contains('/')) {
+        final mimeExtension = normalized.split('/').last;
+        if (mimeExtension.isNotEmpty) {
+          extensions.add(mimeExtension);
+        }
+        continue;
+      }
+
+      extensions.add(
+        normalized.startsWith('.') ? normalized.substring(1) : normalized,
+      );
+    }
+
+    return extensions.toList();
   }
 
   void _setBusy(ClientDocumentItem item, String action) {
