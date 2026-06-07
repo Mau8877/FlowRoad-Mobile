@@ -4,7 +4,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/validators.dart';
 import '../../../../shared/widgets/app_text_field.dart';
 import '../../../../shared/widgets/primary_button.dart';
-import '../../../tracking/presentation/pages/tracking_code_page.dart';
+import '../../../client_processes/presentation/pages/client_process_list_page.dart';
 import '../../data/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -63,7 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
       Navigator.of(
         context,
-      ).pushNamedAndRemoveUntil(TrackingCodePage.routeName, (_) => false);
+      ).pushNamedAndRemoveUntil(ClientProcessListPage.routeName, (_) => false);
     } catch (error) {
       _showError(error.toString());
     } finally {

@@ -4,7 +4,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/validators.dart';
 import '../../../../shared/widgets/app_text_field.dart';
 import '../../../../shared/widgets/primary_button.dart';
-import '../../../tracking/presentation/pages/tracking_code_page.dart';
+import '../../../client_processes/presentation/pages/client_process_list_page.dart';
 import '../../data/auth_service.dart';
 import 'register_page.dart';
 
@@ -49,7 +49,9 @@ class _LoginPageState extends State<LoginPage> {
         return;
       }
 
-      Navigator.of(context).pushReplacementNamed(TrackingCodePage.routeName);
+      Navigator.of(
+        context,
+      ).pushReplacementNamed(ClientProcessListPage.routeName);
     } catch (error) {
       _showError(error.toString());
     } finally {

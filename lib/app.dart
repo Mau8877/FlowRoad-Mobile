@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'core/theme/app_theme.dart';
+import 'features/client_processes/presentation/pages/client_process_detail_page.dart';
+import 'features/client_processes/presentation/pages/client_process_list_page.dart';
 import 'features/login/data/auth_service.dart';
 import 'features/login/presentation/pages/login_page.dart';
 import 'features/login/presentation/pages/register_page.dart';
@@ -22,9 +24,25 @@ class FlowRoadMobileApp extends StatelessWidget {
       routes: {
         LoginPage.routeName: (_) => const LoginPage(),
         RegisterPage.routeName: (_) => const RegisterPage(),
+        ClientProcessListPage.routeName: (_) => const ClientProcessListPage(),
         TrackingCodePage.routeName: (_) => const TrackingCodePage(),
       },
       onGenerateRoute: (settings) {
+        if (settings.name == ClientProcessDetailPage.routeName) {
+          final processInstanceId = settings.arguments;
+
+          if (processInstanceId is String && processInstanceId.isNotEmpty) {
+            return MaterialPageRoute(
+              builder: (_) =>
+                  ClientProcessDetailPage(processInstanceId: processInstanceId),
+            );
+          }
+
+          return MaterialPageRoute(
+            builder: (_) => const ClientProcessListPage(),
+          );
+        }
+
         if (settings.name == TrackingDetailPage.routeName) {
           final tracking = settings.arguments;
 
@@ -67,7 +85,7 @@ class _StartupPageState extends State<_StartupPage> {
     }
 
     Navigator.of(context).pushReplacementNamed(
-      isAuthenticated ? TrackingCodePage.routeName : LoginPage.routeName,
+      isAuthenticated ? ClientProcessListPage.routeName : LoginPage.routeName,
     );
   }
 

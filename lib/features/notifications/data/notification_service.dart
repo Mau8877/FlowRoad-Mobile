@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../../core/config/app_config.dart';
 import '../../../core/network/api_client.dart';
@@ -8,12 +9,17 @@ class NotificationService {
     : _apiClient = apiClient ?? ApiClient();
 
   final ApiClient _apiClient;
-  final FirebaseMessaging _messaging = FirebaseMessaging.instance;
 
   Future<String?> requestAndGetDeviceToken() async {
-    await _messaging.requestPermission(alert: true, badge: true, sound: true);
+    if (kIsWeb) {
+      debugPrint('Firebase Messaging web notifications are disabled.');
+      return null;
+    }
 
-    return _messaging.getToken();
+    final messaging = FirebaseMessaging.instance;
+    await messaging.requestPermission(alert: true, badge: true, sound: true);
+
+    return messaging.getToken();
   }
 
   Future<void> subscribeToTracking({required String trackingCode}) async {
