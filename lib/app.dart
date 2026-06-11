@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'core/theme/app_theme.dart';
+import 'features/client_agent/presentation/pages/client_agent_chat_page.dart';
 import 'features/client_processes/presentation/pages/client_process_detail_page.dart';
 import 'features/client_processes/presentation/pages/client_process_list_page.dart';
 import 'features/login/data/auth_service.dart';
@@ -24,6 +25,7 @@ class FlowRoadMobileApp extends StatelessWidget {
       routes: {
         LoginPage.routeName: (_) => const LoginPage(),
         RegisterPage.routeName: (_) => const RegisterPage(),
+        ClientAgentChatPage.routeName: (_) => const ClientAgentChatPage(),
         ClientProcessListPage.routeName: (_) => const ClientProcessListPage(),
         TrackingCodePage.routeName: (_) => const TrackingCodePage(),
       },

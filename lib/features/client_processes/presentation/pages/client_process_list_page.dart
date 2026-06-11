@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/loading_view.dart';
+import '../../../client_agent/presentation/pages/client_agent_chat_page.dart';
 import '../../../login/data/auth_service.dart';
 import '../../../login/presentation/pages/login_page.dart';
 import '../../../tracking/presentation/pages/tracking_code_page.dart';
@@ -137,6 +138,12 @@ class _ClientProcessListPageState extends State<ClientProcessListPage> {
         backgroundColor: AppColors.frBlack,
         actions: [
           IconButton(
+            tooltip: 'Agente inteligente',
+            onPressed: () =>
+                Navigator.of(context).pushNamed(ClientAgentChatPage.routeName),
+            icon: const Icon(Icons.auto_awesome),
+          ),
+          IconButton(
             tooltip: 'Consultar por código',
             onPressed: () =>
                 Navigator.of(context).pushNamed(TrackingCodePage.routeName),
@@ -148,6 +155,14 @@ class _ClientProcessListPageState extends State<ClientProcessListPage> {
             icon: const Icon(Icons.logout),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () =>
+            Navigator.of(context).pushNamed(ClientAgentChatPage.routeName),
+        backgroundColor: AppColors.frGold,
+        foregroundColor: AppColors.frBlack,
+        icon: const Icon(Icons.auto_awesome),
+        label: const Text('Agente'),
       ),
       body: Container(
         decoration: const BoxDecoration(
